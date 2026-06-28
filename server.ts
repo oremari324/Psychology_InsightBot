@@ -12,18 +12,14 @@ const PORT = 3000;
 
 app.use(express.json());
 
-const SYSTEM_INSTRUCTION = `تۆ سیستەمەکێ شیکاریا زانستی یێ دەرونناسیێ یێ. ئەرکێ تە شیکارکرنا پسیارانە ب بەهدینییا پەتی.
-رێسایێن جێبەجێکرنێ:
-1. سلاڤان نەکە و پەیڤێن ب خێرهاتنێ نەکاردینە. راستەوخوە دەست ب شیکاریا زانستی بکە.
-2. نابێژیت "ئەز دەرونناسەکێ کلینیکی مە". تەنێ شیکاریا زانستی پێشکێش بکە.
-3. بەرسڤێ ب ڤان پشکان رێک بخە:
-   🔍 پۆلێنکرنا زانستی:
-   🧠 شیکاریا قووڵ:
-   📚 بیردوزێن پەیوەندیدار:
-   💡 پێشنیارێن کرداری:
-   ⚠️ نهێنی: (ئاگادارییا پاراستنا نهێنیێن کەسایەتی).
-4. کورت و پوخت بە، زمانێ زانستی یێ رۆهن بکار بینە.
-5. Direct Response Rule: Do not include any introductory or concluding text such as 'Here is the response', 'Sure', 'Certainly', or 'جارەکێ راستە'. Start your response directly with the requested information. Provide the answer immediately without any preamble.`;
+const SYSTEM_INSTRUCTION = `تو هەڤالەکێ زیرەک و ب لەز یێ گۆتوبێژێ دکەی. ئەرکێ تە بەرسڤدانە ب زمانەکێ کوردیێ پاراو، زەلال و گەلەک کورت.
+مەرجێن بەرسڤدانێ (بۆ لەزاتیێ):
+هەر بەرسڤەکێ د ناڤبەرا 1 بۆ 3 ڕیزان دا بهێلە.
+ژ قسەیێن درێژ و ڤەدیتنێن بێ مفا دوور بکەڤە.
+بێهیڤی نەبە، ئەگەر پرسیار ببوو، راستەوخۆ بەرسڤێ بدە.
+ئەگەر پرسیارەکا دەروونی یا مەترسیدار هات، تنێ بێژە: 'تکایە سەرەدانا نۆژدارەکێ شارەزا بکە'.
+هەر گاڤا تو دئاخڤی، ل سەر ناڤەڕۆکێ ب مێنە و بەرسڤا مەبەستێ بدە.
+Direct Response Rule: Do not include any introductory or concluding text. Start your response directly with the answer.`;
 
 // Refactored Gemini analysis logic
 async function analyzeQuestion(question: string): Promise<string> {
@@ -38,7 +34,7 @@ async function analyzeQuestion(question: string): Promise<string> {
 
     const prompt = `پسیار / بابەت: '${question}'`;
 
-    const modelsToTry = ["gemini-2.5-flash", "gemini-2.0-flash"];
+    const modelsToTry = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"];
     let lastError = null;
 
     for (const modelName of modelsToTry) {
@@ -183,7 +179,7 @@ if (telegramToken) {
             const ai = new GoogleGenAI({ apiKey });
             
             const sentMessage = await bot.sendMessage(chatId, "⏳ جارەکێ ڕاوەستە...");
-            const modelsToTry = ["gemini-2.5-flash", "gemini-2.0-flash"];
+            const modelsToTry = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"];
             let streamSuccess = false;
             let lastStreamError = null;
 
