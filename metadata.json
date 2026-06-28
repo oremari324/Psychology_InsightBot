@@ -1,0 +1,6 @@
+{
+  "name": "دانوستاندنین دەروونی",
+  "description": "پلاتفۆرمەکا تایبەت بۆ دانوستاندن و شیکاریێن دەروونی",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

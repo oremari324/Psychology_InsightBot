@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg: #0F1115;
+    --surface: #1A1D23;
+    --accent: #C5A059;
+    --text-primary: #E1E1E1;
+    --text-secondary: #9CA3AF;
+    --border: rgba(197, 160, 89, 0.2);
+  }
+  body {
+    background-color: var(--bg);
+    color: var(--text-primary);
+    font-family: 'Georgia', serif;
+  }
+}
