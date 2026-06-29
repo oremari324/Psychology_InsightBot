@@ -1,0 +1,6 @@
+{
+  "cron": {
+    "path": "/api/bot",
+    "schedule": "*/5 * * * *"
+  }
+}
